@@ -1,3 +1,10 @@
+<script setup>
+  import { ref } from "vue";
+  import data from "./data/quizes.json";
+
+  const quizes = ref(data);
+</script>
+
 <template>
   <div class="container">
     <header>
@@ -5,11 +12,11 @@
       <input type="text" placeholder="Search...">
     </header>
     <div class="options-container">
-      <div class="card">
-        <img src="./assets/images/math.jpg" alt="Math">
+      <div v-for="quiz in quizes" :key="quiz.id" class="card">
+        <img :src="quiz.img" :alt="quiz.name">
         <div class="card-text">
-          <h2>Math</h2>
-          <p>15 questions</p>
+          <h2>{{ quiz.name }}</h2>
+          <p>{{ quiz.questions.length }}</p>
         </div>
       </div>
     </div>
